@@ -1,0 +1,66 @@
+# PulsarClient properties
+bullet.pubsub.pulsar.client.serviceUrl: "pulsar://localhost:6650"
+bullet.pubsub.pulsar.client.operationTimeoutMs: 300000
+bullet.pubsub.pulsar.client.statsIntervalSeconds: 600
+bullet.pubsub.pulsar.client.numIoThreads: 10
+bullet.pubsub.pulsar.client.numListenerThreads: 10
+bullet.pubsub.pulsar.client.connectionsPerBroker: 10
+bullet.pubsub.pulsar.client.useTcpNoDelay: false
+bullet.pubsub.pulsar.client.useTls: true
+bullet.pubsub.pulsar.client.tlsTrustCertsFilePath: "filepath"
+bullet.pubsub.pulsar.client.tlsAllowInsecureConnection: true
+bullet.pubsub.pulsar.client.tlsHostnameVerificationEnable: true
+bullet.pubsub.pulsar.client.concurrentLookupRequest: 50000
+bullet.pubsub.pulsar.client.maxLookupRequest: 500000
+bullet.pubsub.pulsar.client.maxNumberOfRejectedRequestPerConnection: 500
+bullet.pubsub.pulsar.client.keepAliveIntervalSeconds: 300
+
+# Pulsar Producer properties
+bullet.pubsub.pulsar.producer.producerName: "producer"
+bullet.pubsub.pulsar.producer.sendTimeoutMs: 300000
+bullet.pubsub.pulsar.producer.blockIfQueueFull: true
+bullet.pubsub.pulsar.producer.maxPendingMessages: 10000
+bullet.pubsub.pulsar.producer.maxPendingMessagesAcrossPartitions: 500000
+bullet.pubsub.pulsar.producer.messageRoutingMode: "SinglePartition"
+bullet.pubsub.pulsar.producer.hashingScheme: "Murmur3_32Hash"
+bullet.pubsub.pulsar.producer.cryptoFailureAction: "SEND"
+bullet.pubsub.pulsar.producer.batchingMaxPublishDelayMicros: 10000
+bullet.pubsub.pulsar.producer.batchingMaxMessages: 10000
+bullet.pubsub.pulsar.producer.batchingEnabled: false
+bullet.pubsub.pulsar.producer.compressionType: LZ4
+bullet.pubsub.pulsar.producer.initialSequenceId: 5
+
+# Pulsar Consumer properties
+bullet.pubsub.pulsar.consumer.subscriptionName: "subscription"
+bullet.pubsub.pulsar.consumer.subscriptionType: "Shared"
+bullet.pubsub.pulsar.consumer.receiverQueueSize: 10000
+bullet.pubsub.pulsar.consumer.acknowledgementsGroupTimeMicros: 1000000
+bullet.pubsub.pulsar.consumer.maxTotalReceiverQueueSizeAcrossPartitions: 500000
+bullet.pubsub.pulsar.consumer.consumerName: "consumer"
+bullet.pubsub.pulsar.consumer.ackTimeoutMillis: 10
+bullet.pubsub.pulsar.consumer.priorityLevel: 10
+bullet.pubsub.pulsar.consumer.cryptoFailureAction: "DISCARD"
+bullet.pubsub.pulsar.consumer.readCompacted: true
+bullet.pubsub.pulsar.consumer.subscriptionInitialPosition: "Earliest"
+bullet.pubsub.pulsar.consumer.patternAutoDiscoveryPeriod: 10
+
+# PulsarPubSub properties
+# Topic to publish to for QUERY_SUBMISSION
+bullet.pubsub.pulsar.request.topic.name: "topic-0"
+# Topic to subscribe to for QUERY_SUBMISSION
+bullet.pubsub.pulsar.response.topic.name: "response-0"
+# List of topics to subscribe to for QUERY_PROCESSING
+bullet.pubsub.pulsar.response.topic.names:
+  - "topic-0"
+  - "topic-1"
+  - "topic-2"
+# The max number of uncommitted messages that can be buffered in a subscriber
+bullet.pubsub.pulsar.subscriber.max.uncommitted.messages: 50
+
+# PulsarClient authentication properties
+# Note, these properties are not prefixed by "bullet.pubsub.pulsar.client."
+bullet.pubsub.pulsar.auth.enable: false
+bullet.pubsub.pulsar.auth.plugin.class.name:
+bullet.pubsub.pulsar.auth.params.string:
+
+bullet.pubsub.class.name: "com.yahoo.bullet.pulsar.PulsarPubSub"

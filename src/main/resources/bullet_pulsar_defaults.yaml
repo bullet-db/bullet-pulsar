@@ -1,0 +1,41 @@
+###### PulsarClient properties are prefixed by "bullet.pubsub.pulsar.client."
+# All properties and their default values can be found at:
+# https://github.com/apache/pulsar/blob/master/pulsar-client/src/main/java/org/apache/pulsar/client/impl/conf/ClientConfigurationData.java
+# Note, serviceUrl is required by PulsarClient
+bullet.pubsub.pulsar.client.serviceUrl: "pulsar://localhost:6650"
+
+###### Pulsar Producer properties are prefixed by "bullet.pubsub.pulsar.producer."
+# All properties and their default values can be found at:
+# https://github.com/apache/pulsar/blob/master/pulsar-client/src/main/java/org/apache/pulsar/client/impl/conf/ProducerConfigurationData.java
+# Note, the topic name must be set by "bullet.pubsub.pulsar.request.topic.name" which will override any topic name you set in the producer properties
+
+###### Pulsar Consumer properties are prefixed by "bullet.pubsub.pulsar.consumer."
+# All properties and their default values can be found at:
+# https://github.com/apache/pulsar/blob/master/pulsar-client/src/main/java/org/apache/pulsar/client/impl/conf/ConsumerConfigurationData.java
+# Note, subscriptionName is required by Consumer.
+bullet.pubsub.pulsar.consumer.subscriptionName: ""
+
+# bullet-pulsar overrides the default subscriptionType -- "Exclusive" -- and uses "Shared" if it's not explicitly set
+# bullet.pubsub.pulsar.consumer.subscriptionType: "Shared"
+
+###### PulsarPubSub properties
+# Topic to publish to for QUERY_SUBMISSION
+bullet.pubsub.pulsar.request.topic.name: "persistent://sample/standalone/ns1/mytopic"
+
+# Topic to subscribe to for QUERY_SUBMISSION
+bullet.pubsub.pulsar.response.topic.name: "persistent://sample/standalone/ns1/myresponse"
+
+# List of topics to subscribe to for QUERY_PROCESSING
+bullet.pubsub.pulsar.response.topic.names:
+  - "persistent://sample/standalone/ns1/mytopic"
+
+# The max number of uncommitted messages that can be buffered in a subscriber
+bullet.pubsub.pulsar.subscriber.max.uncommitted.messages: 50
+
+###### PulsarClient authentication properties
+# Note, these properties are not prefixed by "bullet.pubsub.pulsar.client."
+bullet.pubsub.pulsar.auth.enable: false
+bullet.pubsub.pulsar.auth.plugin.class.name:
+bullet.pubsub.pulsar.auth.params.string:
+
+bullet.pubsub.class.name: "com.yahoo.bullet.pulsar.PulsarPubSub"

@@ -1,0 +1,1 @@
+bullet.pubsub.pulsar.subscriber.max.uncommitted.messages: 100
