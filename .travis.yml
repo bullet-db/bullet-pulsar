@@ -1,0 +1,20 @@
+language: java
+jdk:
+- oraclejdk8
+script:
+- mvn verify
+after_success:
+- mvn coveralls:report
+- test "${TRAVIS_PULL_REQUEST}" == "false" && test "${TRAVIS_TAG}" != "" && mvn deploy
+  --settings travis/settings.xml
+cache:
+  directories:
+  - "~/.m2"
+branches:
+  only:
+  - master
+  - "/^bullet-pulsar-[0-9]+\\.[0-9]+\\.[0-9]+/"
+env:
+  global:
+  - secure: T9aFw4A7YnAGAmwbKCkOdK95N1wPtcnU+yn1pltt7cV9LgkGAGgFWIaXTxC39YiHjPJ0RUDfastZS3YdzpmK/v66lBi2O5kxu+mfPw9KF3jFRQDb30egMbMfHUg8GTrX7IMPlNZvNXX+bsfxlvfzCZmET1678/Tu2GDdZh2P6sI0cicIub7o7X7hzSCckUv2AlvXuX9wI7eBmIddYfRxmnrGTQq+u6AnFO3LeIboDvvCQpzrc2hAza95s+C07FThKLNqQwcM5f0xnLnZqgcC+9DbeT7VT6gsITPSYAUBvBRBDvGuOkbTf7TAru88sIn3U8rcQ7+Xf22yQacKyoRFmo4+dua3NG0oOQD4Hxd3eYb7IbdIUsva35W8v2e3XT+m1ittFIULS+QcHTbJu1D/TlAebJWiNS1FC03uLSJlTRAVxtkBiae1YtIg0hpAGTNh5ax5PVDmQuXOrwRqpEIW9v/8rbynMGntkJGdnqJhC4VLR4wJaKHDeIt35QnRQ6y0+L76Nnh0oRDSBw4qPpcV8u9RwIFPyYkuTP3L61UsGUJklAhUp/FsfqfJCcSwDNHaZ+iCwFtxcM0KK3HXNMobbgeFxTqN98AfcxXH9Elf7XFBmXh+S/FyGF6VtU4Z0V0EB74VXL5sr7uY/bqTvzgkjYWGqhYBU/fODf9Bcq4S0XI=
+  - secure: XQBKvNvTHryhpQeWIcammmYFcgiCE/RCwtvy/qiCXh2mNOpvEg8hFUusjETlwcbxb4HazNAex8fW/yqLdN3JdeU7OUxKJ82nLt2hwbTmhXcEiRVr6uuF1j8miVfR/UAjIp8ebRffg4LAgPs7EN+aY7DEPGNv9KUfXCTuxt5v0HWeg0Xq1vGQ/jUHCnoMGIGheOcaCT0HCHM9b5+uEVg88ns9k1UxUVVu0WiZAho29P4JKMJXNLeM5FNODlvWSBEWs7gwwAWdazCcdlLYQEukPy4w1WNNbyLGgREze6KRgU98uUOFcYemHa6mYMYhM7E3Qe7N7yVT5EcHnu0sE+mvOgIugECQM1ClaZ/IH7preqBV2kxeba+UdBogjkGWp5aFTfzgSAMI85l2t2IjqLeCsdsAF0pfooMOA5CpRWLUnkHapY91aS3xDCVPZPaEq4Rs4G7NWWDi6ACN2LRpJboutPHy5ZypuWDYxcbXpsiR5aZmvz+EAajdPYaqRgt3lkiK6lnE8j0eBf+T4FsAUWQttyeWxozW7EYEq5ZZsQkvKAb9BDd5/bDGBy3OauC+VCGvJmPGnK47J1+qjh04aRlssmUg3HAHt6nsbHOG74lIMR/QuDXuSlRuK+k29no1mLI6QShbqycJxOxy8lZuuF60qVESnvnZ7v+6Y3+rfZX4v/A=
