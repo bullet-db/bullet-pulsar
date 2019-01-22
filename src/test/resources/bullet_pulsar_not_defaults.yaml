@@ -50,7 +50,7 @@ bullet.pubsub.pulsar.request.topic.name: "topic-0"
 # Topic to subscribe to for QUERY_SUBMISSION
 bullet.pubsub.pulsar.response.topic.name: "response-0"
 # List of topics to subscribe to for QUERY_PROCESSING
-bullet.pubsub.pulsar.response.topic.names:
+bullet.pubsub.pulsar.request.topic.names:
   - "topic-0"
   - "topic-1"
   - "topic-2"

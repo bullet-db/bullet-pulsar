@@ -31,15 +31,15 @@ public class PulsarSubscriber extends BufferingSubscriber {
      *
      * @param sharedPulsarClient The SharedPulsarClient used to get a PulsarClient to create a Subscriber from.
      * @param consumerConf The configuration to create a Pulsar consumer with.
-     * @param responseTopicNames The list of names of the topics to consume from.
+     * @param topicNames The list of names of the topics to consume from.
      * @param maxUncommittedMessages The maximum number of messages that can be received before a commit is needed.
      * @throws PubSubException if there's an error creating the Pulsar consumer.
      */
-    public PulsarSubscriber(SharedPulsarClient sharedPulsarClient, Map<String, Object> consumerConf, List<String> responseTopicNames, int maxUncommittedMessages) throws PubSubException {
+    public PulsarSubscriber(SharedPulsarClient sharedPulsarClient, Map<String, Object> consumerConf, List<String> topicNames, int maxUncommittedMessages) throws PubSubException {
         super(maxUncommittedMessages);
         this.sharedPulsarClient = sharedPulsarClient;
         try {
-            consumer = sharedPulsarClient.getPulsarClient().newConsumer().loadConf(consumerConf).topics(responseTopicNames).subscribe();
+            consumer = sharedPulsarClient.getPulsarClient().newConsumer().loadConf(consumerConf).topics(topicNames).subscribe();
         } catch (PulsarClientException e) {
             throw new PubSubException("Could not create consumer.", e);
         }
