@@ -18,7 +18,7 @@ public class PulsarConfig extends BulletConfig {
     // PulsarPubSub configuration
     public static final String PULSAR_REQUEST_TOPIC_NAME = "bullet.pubsub.pulsar.request.topic.name";
     public static final String PULSAR_RESPONSE_TOPIC_NAME = "bullet.pubsub.pulsar.response.topic.name";
-    public static final String PULSAR_RESPONSE_TOPIC_NAMES = "bullet.pubsub.pulsar.response.topic.names";
+    public static final String PULSAR_REQUEST_TOPIC_NAMES = "bullet.pubsub.pulsar.request.topic.names";
     public static final String PULSAR_MAX_UNCOMMITTED_MESSAGES = "bullet.pubsub.pulsar.subscriber.max.uncommitted.messages";
 
     // PulsarClient authentication configuration
@@ -56,8 +56,8 @@ public class PulsarConfig extends BulletConfig {
         VALIDATOR.relate("If using QUERY_SUBMISSION, response topic name must be specified.", PUBSUB_CONTEXT_NAME, PULSAR_RESPONSE_TOPIC_NAME)
                 .checkIf(isImpliedBy(isEqual(QUERY_SUBMISSION), Validator::isString))
                 .orFail();
-        VALIDATOR.define(PULSAR_RESPONSE_TOPIC_NAMES);
-        VALIDATOR.relate("If using QUERY_PROCESSING, response topic names must be specified.", PUBSUB_CONTEXT_NAME, PULSAR_RESPONSE_TOPIC_NAMES)
+        VALIDATOR.define(PULSAR_REQUEST_TOPIC_NAMES);
+        VALIDATOR.relate("If using QUERY_PROCESSING, request topic names must be specified.", PUBSUB_CONTEXT_NAME, PULSAR_REQUEST_TOPIC_NAMES)
                  .checkIf(isImpliedBy(isEqual(QUERY_PROCESSING), Validator::isNonEmptyList))
                  .orFail();
         VALIDATOR.define(PULSAR_MAX_UNCOMMITTED_MESSAGES)

@@ -30,7 +30,7 @@ public class PulsarPubSub extends PubSub {
 
     private String queryTopicName;              // QUERY_SUBMISSION
     private String responseTopicName;           // QUERY_SUBMISSION
-    private List<String> responseTopicNames;    // QUERY_PROCESSING
+    private List<String> queryTopicNames;       // QUERY_PROCESSING
 
     @Getter(AccessLevel.PACKAGE)
     private Map<String, Object> producerConf;
@@ -63,7 +63,7 @@ public class PulsarPubSub extends PubSub {
     private void initialize() {
         queryTopicName = config.getAs(PulsarConfig.PULSAR_REQUEST_TOPIC_NAME, String.class);
         responseTopicName = config.getAs(PulsarConfig.PULSAR_RESPONSE_TOPIC_NAME, String.class);
-        responseTopicNames = config.getAs(PulsarConfig.PULSAR_RESPONSE_TOPIC_NAMES, List.class);
+        queryTopicNames = config.getAs(PulsarConfig.PULSAR_REQUEST_TOPIC_NAMES, List.class);
 
         Map<String, Object> clientConf = config.getAllWithPrefix(Optional.empty(), PulsarConfig.PULSAR_CLIENT_NAMESPACE, true);
         producerConf = config.getAllWithPrefix(Optional.empty(), PulsarConfig.PULSAR_PRODUCER_NAMESPACE, true);
@@ -100,7 +100,7 @@ public class PulsarPubSub extends PubSub {
     public Subscriber getSubscriber() throws PubSubException {
         Number maxUncommittedMessages = getRequiredConfig(Number.class, PulsarConfig.PULSAR_MAX_UNCOMMITTED_MESSAGES);
         if (context == Context.QUERY_PROCESSING) {
-            return new PulsarSubscriber(sharedPulsarClient, consumerConf, responseTopicNames, maxUncommittedMessages.intValue());
+            return new PulsarSubscriber(sharedPulsarClient, consumerConf, queryTopicNames, maxUncommittedMessages.intValue());
         }
         return new PulsarSubscriber(sharedPulsarClient, consumerConf, Collections.singletonList(responseTopicName), maxUncommittedMessages.intValue());
     }

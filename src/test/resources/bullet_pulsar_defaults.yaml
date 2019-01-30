@@ -26,7 +26,7 @@ bullet.pubsub.pulsar.request.topic.name: "persistent://sample/standalone/ns1/myt
 bullet.pubsub.pulsar.response.topic.name: "persistent://sample/standalone/ns1/myresponse"
 
 # List of topics to subscribe to for QUERY_PROCESSING
-bullet.pubsub.pulsar.response.topic.names:
+bullet.pubsub.pulsar.request.topic.names:
   - "persistent://sample/standalone/ns1/mytopic"
 
 # The max number of uncommitted messages that can be buffered in a subscriber
