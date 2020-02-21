@@ -6,7 +6,6 @@
 package com.yahoo.bullet.pulsar;
 
 import com.yahoo.bullet.common.SerializerDeserializer;
-import com.yahoo.bullet.pubsub.Metadata;
 import com.yahoo.bullet.pubsub.PubSubException;
 import com.yahoo.bullet.pubsub.PubSubMessage;
 import org.apache.pulsar.client.api.Producer;
@@ -49,34 +48,34 @@ public class PulsarResponsePublisherTest {
         PulsarResponsePublisher publisher = new PulsarResponsePublisher(sharedPulsarClient, null);
 
         // first message
-        PubSubMessage messageToSend = new PubSubMessage("id", "hello world", new Metadata(null, "responseTopicName"));
+        PubSubMessage messageToSend = new PubSubMessage("id", "hello world", new PulsarMetadata("responseTopicName"));
         publisher.send(messageToSend);
         Assert.assertEquals(arg1.getValue(), "responseTopicName");
 
         PubSubMessage pubSubMessage = SerializerDeserializer.fromBytes(arg2.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id");
         Assert.assertEquals(pubSubMessage.getContent(), "hello world");
-        Assert.assertEquals(pubSubMessage.getMetadata().getContent(), "responseTopicName");
+        Assert.assertEquals(((PulsarMetadata) pubSubMessage.getMetadata()).getTopicName(), "responseTopicName");
 
         // second message with different response topic
-        messageToSend = new PubSubMessage("id 2", "hello world 2", new Metadata(null, "responseTopicName2"));
+        messageToSend = new PubSubMessage("id 2", "hello world 2", new PulsarMetadata("responseTopicName2"));
         publisher.send(messageToSend);
         Assert.assertEquals(arg1.getValue(), "responseTopicName2");
 
         pubSubMessage = SerializerDeserializer.fromBytes(arg2.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id 2");
         Assert.assertEquals(pubSubMessage.getContent(), "hello world 2");
-        Assert.assertEquals(pubSubMessage.getMetadata().getContent(), "responseTopicName2");
+        Assert.assertEquals(((PulsarMetadata) pubSubMessage.getMetadata()).getTopicName(), "responseTopicName2");
 
         // third message with same topic
-        messageToSend = new PubSubMessage("id 3", "hello world 3", new Metadata(null, "responseTopicName2"));
+        messageToSend = new PubSubMessage("id 3", "hello world 3", new PulsarMetadata("responseTopicName2"));
         publisher.send(messageToSend);
         Assert.assertEquals(arg1.getValue(), "responseTopicName2");
 
         pubSubMessage = SerializerDeserializer.fromBytes(arg2.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id 3");
         Assert.assertEquals(pubSubMessage.getContent(), "hello world 3");
-        Assert.assertEquals(pubSubMessage.getMetadata().getContent(), "responseTopicName2");
+        Assert.assertEquals(((PulsarMetadata) pubSubMessage.getMetadata()).getTopicName(), "responseTopicName2");
 
         // should only have 2 producers
         Assert.assertEquals(publisher.getProducers().size(), 2);
@@ -97,7 +96,7 @@ public class PulsarResponsePublisherTest {
 
         PulsarResponsePublisher publisher = new PulsarResponsePublisher(sharedPulsarClient, null);
 
-        PubSubMessage messageToSend = new PubSubMessage("id", "hello world", new Metadata(null, "responseTopicName"));
+        PubSubMessage messageToSend = new PubSubMessage("id", "hello world", new PulsarMetadata("responseTopicName"));
         publisher.send(messageToSend);
     }
 }

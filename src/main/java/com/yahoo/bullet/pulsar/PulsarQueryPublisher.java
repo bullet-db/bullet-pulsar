@@ -44,12 +44,12 @@ public class PulsarQueryPublisher implements Publisher {
     }
 
     @Override
-    public void send(PubSubMessage pubSubMessage) {
-        if (!pubSubMessage.hasMetadata()) {
-            pubSubMessage.setMetadata(new Metadata());
-        }
-        pubSubMessage.getMetadata().setContent(responseTopicName);
-        producer.sendAsync(SerializerDeserializer.toBytes(pubSubMessage));
+    public PubSubMessage send(PubSubMessage message) {
+        Metadata metadata = message.hasMetadata() ? new PulsarMetadata(message.getMetadata(), responseTopicName) :
+                                                    new PulsarMetadata(responseTopicName);
+        message.setMetadata(metadata);
+        producer.sendAsync(SerializerDeserializer.toBytes(message));
+        return message;
     }
 
     @Override
