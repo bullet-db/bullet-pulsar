@@ -51,7 +51,8 @@ public class PulsarQueryPublisherTest {
         PubSubMessage pubSubMessage = SerializerDeserializer.fromBytes(arg.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id");
         Assert.assertEquals(pubSubMessage.getContent(), "hello world");
-        Assert.assertEquals(pubSubMessage.getMetadata().getContent(), "responseTopicName");
+        PulsarMetadata metadata = (PulsarMetadata) pubSubMessage.getMetadata();
+        Assert.assertEquals(metadata.getTopicName(), "responseTopicName");
 
         // coverage
         publisher.send(new PubSubMessage("id", "hello world!", new Metadata()));
@@ -59,7 +60,8 @@ public class PulsarQueryPublisherTest {
         pubSubMessage = SerializerDeserializer.fromBytes(arg.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id");
         Assert.assertEquals(pubSubMessage.getContent(), "hello world!");
-        Assert.assertEquals(pubSubMessage.getMetadata().getContent(), "responseTopicName");
+        metadata = (PulsarMetadata) pubSubMessage.getMetadata();
+        Assert.assertEquals(metadata.getTopicName(), "responseTopicName");
 
         Assert.assertNotNull(publisher.getSharedPulsarClient());
 

@@ -40,11 +40,12 @@ public class PulsarResponsePublisher implements Publisher {
     }
 
     @Override
-    public void send(PubSubMessage pubSubMessage) throws PubSubException {
-        String responseTopicName = (String) pubSubMessage.getMetadata().getContent();
+    public PubSubMessage send(PubSubMessage pubSubMessage) throws PubSubException {
+        String responseTopicName = ((PulsarMetadata) pubSubMessage.getMetadata()).getTopicName();
         Producer<byte[]> producer = getProducer(responseTopicName);
 
         producer.sendAsync(SerializerDeserializer.toBytes(pubSubMessage));
+        return pubSubMessage;
     }
 
     @Override
