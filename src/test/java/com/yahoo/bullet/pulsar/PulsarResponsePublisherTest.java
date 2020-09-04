@@ -54,7 +54,7 @@ public class PulsarResponsePublisherTest {
 
         PubSubMessage pubSubMessage = SerializerDeserializer.fromBytes(arg2.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id");
-        Assert.assertEquals(pubSubMessage.getContent(), "hello world");
+        Assert.assertEquals(pubSubMessage.getContentAsString(), "hello world");
         Assert.assertEquals(((PulsarMetadata) pubSubMessage.getMetadata()).getTopicName(), "responseTopicName");
 
         // second message with different response topic
@@ -64,7 +64,7 @@ public class PulsarResponsePublisherTest {
 
         pubSubMessage = SerializerDeserializer.fromBytes(arg2.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id 2");
-        Assert.assertEquals(pubSubMessage.getContent(), "hello world 2");
+        Assert.assertEquals(pubSubMessage.getContentAsString(), "hello world 2");
         Assert.assertEquals(((PulsarMetadata) pubSubMessage.getMetadata()).getTopicName(), "responseTopicName2");
 
         // third message with same topic
@@ -74,7 +74,7 @@ public class PulsarResponsePublisherTest {
 
         pubSubMessage = SerializerDeserializer.fromBytes(arg2.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id 3");
-        Assert.assertEquals(pubSubMessage.getContent(), "hello world 3");
+        Assert.assertEquals(pubSubMessage.getContentAsString(), "hello world 3");
         Assert.assertEquals(((PulsarMetadata) pubSubMessage.getMetadata()).getTopicName(), "responseTopicName2");
 
         // should only have 2 producers

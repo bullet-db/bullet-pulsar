@@ -35,4 +35,9 @@ public class PulsarMetadata extends Metadata implements Serializable {
     public PulsarMetadata(String topicName) {
         this.topicName = topicName;
     }
+
+    @Override
+    public Metadata copy() {
+        return new PulsarMetadata(this, topicName);
+    }
 }
