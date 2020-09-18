@@ -28,4 +28,14 @@ public class PulsarMetadataTest {
         Assert.assertEquals(metadata.getContent(), Collections.emptyMap());
         Assert.assertEquals(metadata.getTopicName(), "foo");
     }
+
+    @Test
+    public void testCopy() {
+        PulsarMetadata metadata = new PulsarMetadata(new Metadata(Metadata.Signal.CUSTOM, new HashMap<>()), "foo");
+        PulsarMetadata copy = (PulsarMetadata) metadata.copy();
+        Assert.assertNotEquals(metadata, copy);
+        Assert.assertEquals(metadata.getSignal(), copy.getSignal());
+        Assert.assertEquals(metadata.getContent(), copy.getContent());
+        Assert.assertEquals(metadata.getTopicName(), copy.getTopicName());
+    }
 }

@@ -9,7 +9,6 @@ import com.yahoo.bullet.common.SerializerDeserializer;
 import com.yahoo.bullet.pubsub.Metadata;
 import com.yahoo.bullet.pubsub.PubSubException;
 import com.yahoo.bullet.pubsub.PubSubMessage;
-import com.yahoo.bullet.pubsub.Publisher;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.ProducerBuilder;
 import org.apache.pulsar.client.api.PulsarClient;
@@ -21,7 +20,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class PulsarQueryPublisherTest {
-
     private SharedPulsarClient sharedPulsarClient;
     private PulsarClient pulsarClient;
     private ProducerBuilder<byte[]> producerBuilder;
@@ -46,11 +44,11 @@ public class PulsarQueryPublisherTest {
         Mockito.doReturn(null).when(producer).sendAsync(arg.capture());
 
         PulsarQueryPublisher publisher = new PulsarQueryPublisher(sharedPulsarClient, null, "queryTopicName", "responseTopicName");
-        publisher.send("id", "hello world");
+        publisher.send("id", "hello world".getBytes(PubSubMessage.CHARSET));
 
         PubSubMessage pubSubMessage = SerializerDeserializer.fromBytes(arg.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id");
-        Assert.assertEquals(pubSubMessage.getContent(), "hello world");
+        Assert.assertEquals(pubSubMessage.getContentAsString(), "hello world");
         PulsarMetadata metadata = (PulsarMetadata) pubSubMessage.getMetadata();
         Assert.assertEquals(metadata.getTopicName(), "responseTopicName");
 
@@ -59,7 +57,7 @@ public class PulsarQueryPublisherTest {
 
         pubSubMessage = SerializerDeserializer.fromBytes(arg.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id");
-        Assert.assertEquals(pubSubMessage.getContent(), "hello world!");
+        Assert.assertEquals(pubSubMessage.getContentAsString(), "hello world!");
         metadata = (PulsarMetadata) pubSubMessage.getMetadata();
         Assert.assertEquals(metadata.getTopicName(), "responseTopicName");
 
@@ -75,8 +73,6 @@ public class PulsarQueryPublisherTest {
     @Test(expectedExceptions = PubSubException.class, expectedExceptionsMessageRegExp = "Could not create producer\\.")
     public void testSendThrows() throws Exception {
         Mockito.doThrow(new PulsarClientException("mock exception")).when(producerBuilder).create();
-
-        Publisher publisher = new PulsarQueryPublisher(sharedPulsarClient, null, "queryTopicName", "responseTopicName");
-        publisher.send("id", "hello world");
+        new PulsarQueryPublisher(sharedPulsarClient, null, "queryTopicName", "responseTopicName");
     }
 }

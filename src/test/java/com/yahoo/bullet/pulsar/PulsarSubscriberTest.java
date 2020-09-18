@@ -56,9 +56,9 @@ public class PulsarSubscriberTest {
 
         List<PubSubMessage> messages = subscriber.getMessages();
         Assert.assertEquals(messages.size(), 3);
-        Assert.assertEquals(messages.get(0).getContent(), "hello world");
+        Assert.assertEquals(messages.get(0).getContentAsString(), "hello world");
         Assert.assertEquals(messages.get(1), null);
-        Assert.assertEquals(messages.get(2).getContent(), "hello world!");
+        Assert.assertEquals(messages.get(2).getContentAsString(), "hello world!");
 
         Assert.assertNotNull(subscriber.getSharedPulsarClient());
 
