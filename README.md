@@ -20,7 +20,7 @@ Bullet is a streaming query engine that can be plugged into any singular data st
 
 ## Install
 
-Bullet Pulsar is a Java implementation of Bullet [PubSub](https://bullet-db.github.io/pubsub/architecture/), published to [Bintray](https://bintray.com/yahoo/maven/bullet-pulsar) and mirrored to [JCenter](http://jcenter.bintray.com/com/yahoo/bullet/bullet-pulsar/).  To see the various versions and set up your project for your package manager (Maven, Gradle etc), [see here](https://bullet-db.github.io/releases/#bullet-pulsar).
+Bullet Pulsar is a Java implementation of the Bullet [PubSub](https://bullet-db.github.io/pubsub/architecture/), published to [Bintray](https://bintray.com/yahoo/maven/bullet-pulsar) and mirrored to [JCenter](http://jcenter.bintray.com/com/yahoo/bullet/bullet-pulsar/).  To see the various versions and set up your project for your package manager (Maven, Gradle etc), [see here](https://bullet-db.github.io/releases/#bullet-pulsar).
 
 ## Usage
 
