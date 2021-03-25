@@ -4,7 +4,7 @@
 
     <groupId>com.yahoo.bullet</groupId>
     <artifactId>bullet-pulsar</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>bullet-pulsar</name>
 
