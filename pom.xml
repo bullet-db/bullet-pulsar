@@ -8,34 +8,51 @@
     <packaging>jar</packaging>
     <name>bullet-pulsar</name>
 
+    <description>
+        This is all things Pulsar related for Bullet - primarily the pluggable PubSub implementations
+    </description>
+    <url>https://github.com/bullet-db/bullet-pulsar</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <scm>
+        <url>https://github.com/bullet-db/bullet-pulsar</url>
+        <connection>scm:git:ssh://git@github.com/bullet-db/bullet-pulsar.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/bullet-db/bullet-pulsar.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
-    <distributionManagement>
-        <repository>
-            <id>bintray-bullet-pulsar-repo</id>
-            <url>https://api.bintray.com/maven/yahoo/maven/bullet-pulsar;publish=1</url>
-        </repository>
-    </distributionManagement>
+    <developers>
+        <developer>
+            <name>Bullet Developers</name>
+            <email>bullet-dev@googlegroups.com</email>
+            <organization>Yahoo Inc.</organization>
+            <organizationUrl>https://github.com/bullet-db</organizationUrl>
+        </developer>
+    </developers>
 
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-yahoo-maven</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/yahoo/maven</url>
-        </repository>
-    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <bullet.core.version>1.2.1</bullet.core.version>
+        <bullet.core.version>1.2.2</bullet.core.version>
         <pulsar.client.version>2.2.1</pulsar.client.version>
     </properties>
 
