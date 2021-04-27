@@ -4,7 +4,7 @@
 
     <groupId>com.yahoo.bullet</groupId>
     <artifactId>bullet-pulsar</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
     <name>bullet-pulsar</name>
 
@@ -35,7 +35,7 @@
         <url>https://github.com/bullet-db/bullet-pulsar</url>
         <connection>scm:git:ssh://git@github.com/bullet-db/bullet-pulsar.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/bullet-db/bullet-pulsar.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>bullet-pulsar-1.0.3</tag>
     </scm>
 
     <developers>
