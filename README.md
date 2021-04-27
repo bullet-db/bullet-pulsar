@@ -1,6 +1,8 @@
 # Bullet Pulsar
 
-[![Build Status](https://travis-ci.com/bullet-db/bullet-pulsar.svg?branch=master)](https://travis-ci.com/bullet-db/bullet-pulsar) [![Coverage Status](https://coveralls.io/repos/github/bullet-db/bullet-pulsar/badge.svg?branch=master)](https://coveralls.io/github/bullet-db/bullet-pulsar?branch=master) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.yahoo.bullet/bullet-pulsar/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.yahoo.bullet/bullet-pulsar/)
+[![Build Status](https://cd.screwdriver.cd/pipelines/7224/badge)](https://cd.screwdriver.cd/pipelines/7224)
+[![Coverage Status](https://coveralls.io/repos/github/bullet-db/bullet-pulsar/badge.svg?branch=master)](https://coveralls.io/github/bullet-db/bullet-pulsar?branch=master) 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.yahoo.bullet/bullet-pulsar/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.yahoo.bullet/bullet-pulsar/)
 
 This project implements Bullet PubSub through [Pulsar](https://pulsar.apache.org), allowing you to use Pulsar as your pubsub layer for transporting Bullet queries and results between the Bullet Web Service and Backend.
 
