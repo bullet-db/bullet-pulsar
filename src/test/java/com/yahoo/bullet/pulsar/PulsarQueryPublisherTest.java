@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018, Oath Inc.
+ *  Copyright 2018, Yahoo Inc.
  *  Licensed under the terms of the Apache License, Version 2.0.
  *  See the LICENSE file associated with the project for terms.
  */
@@ -44,7 +44,7 @@ public class PulsarQueryPublisherTest {
         Mockito.doReturn(null).when(producer).sendAsync(arg.capture());
 
         PulsarQueryPublisher publisher = new PulsarQueryPublisher(sharedPulsarClient, null, "queryTopicName", "responseTopicName");
-        publisher.send("id", "hello world".getBytes(PubSubMessage.CHARSET));
+        publisher.send("id", "hello world");
 
         PubSubMessage pubSubMessage = SerializerDeserializer.fromBytes(arg.getValue());
         Assert.assertEquals(pubSubMessage.getId(), "id");
