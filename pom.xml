@@ -54,7 +54,7 @@
         <bullet.core.version>1.5.2</bullet.core.version>
         <slf4j.version>1.7.32</slf4j.version>
         <log4j.version>2.17.1</log4j.version>
-        <pulsar.client.version>2.2.1</pulsar.client.version>
+        <pulsar.client.version>2.7.5</pulsar.client.version>
     </properties>
 
     <dependencies>
